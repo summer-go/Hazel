@@ -1,11 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
-project(Sanbox)
-set(SRC_LIST src/Application.cpp)
+cmake_minimum_required(VERSION 3.20)
 
-add_subdirectory(engine)
+project(Sanbox)
+set(SRC_LIST src/SandBoxApp.cpp)
+
+add_subdirectory(Hazel)
 
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-#target_include_directories(${PROJECT_NAME} PUBLIC engine/src)
-target_link_libraries(${PROJECT_NAME}  engine)
-
+target_link_libraries(${PROJECT_NAME}  hazel)
+target_include_directories(${PROJECT_NAME} PRIVATE Hazel/src)
