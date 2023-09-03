@@ -1,0 +1,8 @@
+//
+// Created by baidu on 2023/9/4.
+//
+
+#ifndef SANBOX_APPLICATIONEVENT_H
+#define SANBOX_APPLICATIONEVENT_H
+
+#endif //SANBOX_APPLICATIONEVENT_H
