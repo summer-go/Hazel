@@ -13,5 +13,7 @@
         #define HAZEL_API __declspec(dllimport)
     #endif
 #else
-    #error Hazel only support Windows!
+//    #error Hazel only support Windows!
+
+#endif
 #endif //SANBOX_CORE_H
