@@ -46,6 +46,4 @@ namespace Hazel{
         WindowData  m_Data;
     };
 }
-
-
 #endif //SANBOX_WINDOWSWINDOW_H

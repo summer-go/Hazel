@@ -16,13 +16,13 @@ namespace Hazel{
 
     protected:
         KeyEvent(const KeyCode keycode) : m_KeyCode(keycode){}
-        keyCode m_KeyCode;
+        KeyCode m_KeyCode;
     };
 
     class KeyPressedEvent : public KeyEvent {
     public:
         KeyPressedEvent(const KeyCode keycode, bool isRepeat = false)
-        : KeyEvent(keycode), m_isRepeat(isRepeat){}
+        : KeyEvent(keycode), m_IsRepeat(isRepeat){}
 
         bool IsRepeat() const {return m_IsRepeat;}
 
