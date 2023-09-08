@@ -105,8 +105,6 @@ namespace Hazel {
 
         glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods){
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-            WindowCloseEvent event;
-            data.EventCallback(event);
 
             switch (action) {
                 case GLFW_PRESS:
