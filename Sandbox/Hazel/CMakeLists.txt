@@ -8,7 +8,8 @@ set(SRC_LIST
         src/Hazel/Log.cpp
         src/Hazel/Platform/Windows/WindowsWindow.cpp
         src/Hazel/glad.c
-        )
+        src/Hazel/Layer.h src/Hazel/Layer.cpp
+        src/Hazel/LayerStack.cpp src/Hazel/LayerStack.h)
 
 
 add_library(hazel STATIC ${SRC_LIST})
