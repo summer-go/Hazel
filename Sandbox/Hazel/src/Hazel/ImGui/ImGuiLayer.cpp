@@ -3,10 +3,9 @@
 //
 
 #include <imgui.h>
-#include <GLFW/glfw3.h>
+#include "Application.h"
 #include <backends/imgui_impl_opengl3.h>
 #include "ImGuiLayer.h"
-#include "Application.h"
 #include "imgui_impl_glfw.h"
 
 namespace Hazel {

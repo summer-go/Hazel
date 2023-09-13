@@ -6,8 +6,6 @@
 #define SANBOX_WINDOWSWINDOW_H
 
 #include "Window.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 namespace Hazel{
     class WindowsWindow : public Window{
     public:
