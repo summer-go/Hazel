@@ -7,6 +7,7 @@
 #include <backends/imgui_impl_opengl3.h>
 #include "ImGuiLayer.h"
 #include "Application.h"
+#include "imgui_impl_glfw.h"
 
 namespace Hazel {
     ImGuiLayer::~ImGuiLayer() {
@@ -44,6 +45,7 @@ namespace Hazel {
         io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
         io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
 
+        ImGui_ImplGlfw_InitForOpenGL(Application::Get().GetWindow().GetNativeWindow(), true);
         ImGui_ImplOpenGL3_Init("#version 330");
     }
 
@@ -52,14 +54,9 @@ namespace Hazel {
 
     void ImGuiLayer::OnUpdate() {
         ImGuiIO& io = ImGui::GetIO();
-        Application& app = Application::Get();
-        io.DisplaySize = ImVec2( app.GetWindow().GetWidth(), 2  * app.GetWindow().GetHeight());
-
-        float time = glfwGetTime();
-        io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0f / 60.0f);
-        m_Time = time;
 
         ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
         static bool show = true;
