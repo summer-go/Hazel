@@ -44,6 +44,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         vendor/GLFW/include
         vendor/imgui
         vendor/imgui/backends
+        vendor/glm
         src/Hazel/Core
         src/Hazel/Events
         src/Hazel
