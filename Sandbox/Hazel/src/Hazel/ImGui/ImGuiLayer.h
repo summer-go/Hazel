@@ -7,13 +7,12 @@ public:
     ImGuiLayer();
     ~ImGuiLayer() override;
 
-    void OnAttach() override;
+   virtual void OnAttach() override;
+   virtual void OnDetach() override;
+   virtual void OnImGuiRender() override;
 
-    void OnDetach() override;
-
-    void OnUpdate() override;
-
-    void OnEvent(Event &event) override;
+   void Begin();
+   void End();
 private:
     float m_Time = 0.0f;
 };
