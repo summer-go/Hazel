@@ -8,6 +8,7 @@
 #include "Log.h"
 #include "WindowsWindow.h"
 #include <iostream>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 //#include "Assert.h"
 namespace Hazel {
@@ -52,14 +53,12 @@ namespace Hazel {
 #endif
 
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-        glfwMakeContextCurrent(m_Window);
+
+        m_Context = new OpenGLContext(m_Window);
+        m_Context->Init();
+
         glfwSetWindowUserPointer(m_Window, &m_Data);
 
-        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-        {
-            HZ_CORE_INFO("Failed to initialize GLAD");
-            return;
-        }
         SetVSync(true);
 
         // set GLFW callback
@@ -143,7 +142,8 @@ namespace Hazel {
 
     void WindowsWindow::OnUpdate() {
         glfwPollEvents();
-        glfwSwapBuffers(m_Window);
+        m_Context->SwapBuffers();
+//        glfwSwapBuffers(m_Window);
     }
 
     void WindowsWindow::SetVSync(bool enabled) {

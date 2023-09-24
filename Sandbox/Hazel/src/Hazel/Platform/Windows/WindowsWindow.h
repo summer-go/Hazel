@@ -6,6 +6,7 @@
 #define SANBOX_WINDOWSWINDOW_H
 
 #include "Window.h"
+#include "Renderer/GraphicsContext.h"
 namespace Hazel{
     class WindowsWindow : public Window{
     public:
@@ -37,6 +38,7 @@ namespace Hazel{
 
     private:
         GLFWwindow* m_Window;
+        GraphicsContext* m_Context;
 
         struct WindowData {
             std::string Title;

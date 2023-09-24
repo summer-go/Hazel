@@ -32,6 +32,9 @@ set(SRC_LIST
         src/Hazel/Platform/Windows/WindowsInput.h
         src/Hazel/KeyCodes.h
         src/Hazel/MouseButtonCodes.h
+        src/Hazel/Renderer/GraphicsContext.h
+        src/Hazel/Platform/OpenGL/OpenGLContext.cpp
+        src/Hazel/Platform/OpenGL/OpenGLContext.h
 )
 
 
