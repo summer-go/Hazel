@@ -11,6 +11,8 @@
 #include "Window.h"
 #include "LayerStack.h"
 #include "ImGui/ImGuiLayer.h"
+#include "Renderer/Shader.h"
+
 namespace Hazel{
 class Application {
 public:
@@ -35,7 +37,7 @@ private:
     bool m_Running = true;
     LayerStack m_LayerStack;
     unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
-    unsigned int shaderProgram;
+    std::unique_ptr<Shader> m_Shader;
 private:
     static Application* s_Instance;
 };

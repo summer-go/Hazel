@@ -35,6 +35,8 @@ set(SRC_LIST
         src/Hazel/Renderer/GraphicsContext.h
         src/Hazel/Platform/OpenGL/OpenGLContext.cpp
         src/Hazel/Platform/OpenGL/OpenGLContext.h
+        src/Hazel/Renderer/Shader.cpp
+        src/Hazel/Renderer/Shader.h
 )
 
 

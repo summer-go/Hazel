@@ -23,6 +23,7 @@ namespace Hazel{
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
 
+
         glGenVertexArrays(1, &m_VertexArray);
         glBindVertexArray(m_VertexArray);
 
@@ -46,63 +47,30 @@ namespace Hazel{
         unsigned int indices[3] = {0, 1, 2};
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+        std::string vertexSrc = R"(
+            #version 330 core
+            layout(location = 0) in vec3 a_Position;
+            out vec3 v_Position;
 
+            void main()
+            {
+                v_Position = a_Position;
+                gl_Position = vec4(a_Position, 1.0);
+            }
+        )";
 
+        std::string fragmentSrc = R"(
+            #version 330 core
+            layout(location = 0) out vec4 color;
+            in vec3 v_Position;
 
+            void main()
+            {
+                color = vec4(v_Position * 0.5 + 0.5, 1.0);
+            }
+        )";
 
-        // build and compile our shader program
-        // ------------------------------------
-        // vertex shader
-
-        const char *vertexShaderSource = "#version 330 core\n"
-                                         "layout (location = 0) in vec3 aPos;\n"
-                                         "void main()\n"
-                                         "{\n"
-                                         "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-                                         "}\0";
-        const char *fragmentShaderSource = "#version 330 core\n"
-                                           "out vec4 FragColor;\n"
-                                           "void main()\n"
-                                           "{\n"
-                                           "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-                                           "}\n\0";
-
-        unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-        glCompileShader(vertexShader);
-        // check for shader compile errors
-        int success;
-        char infoLog[512];
-        glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-        if (!success)
-        {
-            glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-            std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-        }
-        // fragment shader
-        unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-        glCompileShader(fragmentShader);
-        // check for shader compile errors
-        glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-        if (!success)
-        {
-            glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-            std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-        }
-        // link shaders
-        shaderProgram = glCreateProgram();
-        glAttachShader(shaderProgram, vertexShader);
-        glAttachShader(shaderProgram, fragmentShader);
-        glLinkProgram(shaderProgram);
-        // check for linking errors
-        glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-        if (!success) {
-            glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-            std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-        }
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
+        m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
     }
 
     void Application::PushLayer(Layer *layer) {
@@ -151,8 +119,7 @@ namespace Hazel{
             glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glUseProgram(shaderProgram);
-
+            m_Shader->Bind();
             glBindVertexArray(m_VertexArray);
             glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
