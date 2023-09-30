@@ -37,6 +37,12 @@ set(SRC_LIST
         src/Hazel/Platform/OpenGL/OpenGLContext.h
         src/Hazel/Renderer/Shader.cpp
         src/Hazel/Renderer/Shader.h
+        src/Hazel/Renderer/Renderer.cpp
+        src/Hazel/Renderer/Renderer.h
+        src/Hazel/Renderer/Buffer.cpp
+        src/Hazel/Renderer/Buffer.h
+        src/Hazel/Platform/OpenGL/OpenGLBuffer.cpp
+        src/Hazel/Platform/OpenGL/OpenGLBuffer.h
 )
 
 
