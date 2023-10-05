@@ -47,6 +47,12 @@ set(SRC_LIST
         src/Hazel/Renderer/VertexArray.h
         src/Hazel/Platform/OpenGL/OpenGLVertexArray.cpp
         src/Hazel/Platform/OpenGL/OpenGLVertexArray.h
+        src/Hazel/Renderer/RendererAPI.cpp
+        src/Hazel/Renderer/RendererAPI.h
+        src/Hazel/Platform/OpenGL/OpenGLRendererAPI.cpp
+        src/Hazel/Platform/OpenGL/OpenGLRendererAPI.h
+        src/Hazel/Renderer/RenderCommand.cpp
+        src/Hazel/Renderer/RenderCommand.h
 )
 
 
