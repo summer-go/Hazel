@@ -55,6 +55,7 @@ set(SRC_LIST
         src/Hazel/Renderer/RenderCommand.h
         src/Hazel/Renderer/OrthographicCamera.cpp
         src/Hazel/Renderer/OrthographicCamera.h
+        src/Hazel/Core/Timestep.h
 )
 
 

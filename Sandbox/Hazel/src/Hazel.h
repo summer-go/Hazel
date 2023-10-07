@@ -26,6 +26,7 @@
 #include <Renderer/Buffer.h>
 #include <Renderer/Shader.h>
 #include <Renderer/VertexArray.h>
+#include <Hazel/Core/Timestep.h>
 
 
 // -----Entry Point-------

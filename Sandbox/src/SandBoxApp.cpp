@@ -128,22 +128,22 @@ public:
         m_BlueShader = std::make_shared<Hazel::Shader>(blueShaderVertexSrc, blueShaderFragmentSrc);
     }
 
-    void OnUpdate() override{
+    void OnUpdate(Hazel::Timestep ts) override{
 
         if (Hazel::Input::IsKeyPressed(HZ_KEY_LEFT))
-            m_CameraPosition.x -= m_CameraMoveSpeed ;
+            m_CameraPosition.x -= m_CameraMoveSpeed * ts;
         else if (Hazel::Input::IsKeyPressed(HZ_KEY_RIGHT))
-            m_CameraPosition.x += m_CameraMoveSpeed ;
+            m_CameraPosition.x += m_CameraMoveSpeed * ts ;
 
         if (Hazel::Input::IsKeyPressed(HZ_KEY_UP))
-            m_CameraPosition.y += m_CameraMoveSpeed ;
+            m_CameraPosition.y += m_CameraMoveSpeed * ts ;
         else if (Hazel::Input::IsKeyPressed(HZ_KEY_DOWN))
-            m_CameraPosition.y -= m_CameraMoveSpeed ;
+            m_CameraPosition.y -= m_CameraMoveSpeed * ts ;
 
         if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
-            m_CameraRotation += m_CameraRotationSpeed;
+            m_CameraRotation += m_CameraRotationSpeed * ts;
         if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
-            m_CameraRotation -= m_CameraRotationSpeed;
+            m_CameraRotation -= m_CameraRotationSpeed * ts;
 
         Hazel::RenderCommand::SetClearColor({0.45f, 0.55f, 0.60f, 1.00f});
         Hazel::RenderCommand::Clear();
@@ -174,8 +174,8 @@ private:
     glm::vec3 m_CameraPosition;
     float m_CameraRotation = 0.0f;
 
-    float m_CameraMoveSpeed = 0.03f;
-    float m_CameraRotationSpeed = 1.0f;
+    float m_CameraMoveSpeed = 5.f;
+    float m_CameraRotationSpeed = 180.0f;
 };
 
 class Sandbox : public Hazel::Application {
