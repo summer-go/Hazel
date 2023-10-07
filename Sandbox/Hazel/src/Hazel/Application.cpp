@@ -15,9 +15,6 @@ namespace Hazel{
     {
         s_Instance = this;
         m_Window = std::unique_ptr<Window>(Window::Create());
-        // 绑定类成员函数，需要传this
-//        Window::EventCallbackFn fn = std::bind(&Application::OnEvent, this, std::placeholders::_1);
-//        m_Window->SetEventCallback(fn);
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
@@ -56,15 +53,6 @@ namespace Hazel{
     }
 
     void Application::Run() {
-        WindowResizeEvent e(1200, 720);
-        if (e.IsInCategory(EventCategoryApplication)) {
-            HZ_TRACE(e.ToString());
-        }
-
-        if (e.IsInCategory(EventCategoryInput)) {
-            HZ_TRACE(e.ToString());
-        }
-
         while(m_Running) {
 
             for (Layer* layer : m_LayerStack) {
