@@ -53,6 +53,8 @@ set(SRC_LIST
         src/Hazel/Platform/OpenGL/OpenGLRendererAPI.h
         src/Hazel/Renderer/RenderCommand.cpp
         src/Hazel/Renderer/RenderCommand.h
+        src/Hazel/Renderer/OrthographicCamera.cpp
+        src/Hazel/Renderer/OrthographicCamera.h
 )
 
 
