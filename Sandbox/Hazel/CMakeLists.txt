@@ -56,6 +56,8 @@ set(SRC_LIST
         src/Hazel/Renderer/OrthographicCamera.cpp
         src/Hazel/Renderer/OrthographicCamera.h
         src/Hazel/Core/Timestep.h
+        src/Hazel/Platform/OpenGL/OpenGLShader.cpp
+        src/Hazel/Platform/OpenGL/OpenGLShader.h
 )
 
 
