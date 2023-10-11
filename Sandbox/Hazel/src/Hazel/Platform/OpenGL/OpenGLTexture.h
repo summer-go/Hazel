@@ -8,8 +8,8 @@ namespace Hazel {
         explicit OpenGLTexture2D(const std::string& path);
         ~OpenGLTexture2D() override;
 
-        [[nodiscard]] uint32_t GetWidth() const override { return m_width;}
-        [[nodiscard]] uint32_t GetHeight() const override { return m_height;}
+        uint32_t GetWidth() const override { return m_width;}
+        uint32_t GetHeight() const override { return m_height;}
 
         void Bind(uint32_t slot = 0) const override;
 
