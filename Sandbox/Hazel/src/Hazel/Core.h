@@ -2,9 +2,9 @@
 // Created by baidu on 2023/9/2.
 //
 
-#ifndef SANBOX_CORE_H
-#define SANBOX_CORE_H
+#pragma once
 
+#include <memory>
 
 #ifdef HZ_PLATFORM_WINDOWS
     #ifdef HZ_BUILD_DLL
@@ -16,4 +16,11 @@
 //    #error Hazel only support Windows!
 
 #endif
-#endif //SANBOX_CORE_H
+
+namespace Hazel {
+    template<typename T>
+    using Scope = std::unique_ptr<T>;
+
+    template<typename T>
+    using Ref = std::shared_ptr<T>;
+}

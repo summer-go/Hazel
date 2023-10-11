@@ -15,6 +15,7 @@
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
 #include "Renderer/OrthographicCamera.h"
+#include "Core.h"
 
 namespace Hazel{
 class Application {
@@ -35,7 +36,7 @@ public:
 
 private:
     bool OnWindowClose(WindowCloseEvent& e);
-    std::unique_ptr<Window> m_Window;
+    Scope<Window> m_Window;
     ImGuiLayer* m_ImGuiLayer;
     bool m_Running = true;
     LayerStack m_LayerStack;
