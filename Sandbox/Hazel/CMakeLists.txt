@@ -5,6 +5,10 @@ find_package(OpenGL REQUIRED)
 project(hazel)
 
 
+file (GLOB SRC_LIST_STB_IMAGE
+        vendor/stb_image/*.h
+        vendor/stb_image/*.cpp
+)
 file (GLOB SRC_LIST_IMGUI
         vendor/imgui/*.h
         vendor/imgui/*.cpp
@@ -58,10 +62,16 @@ set(SRC_LIST
         src/Hazel/Core/Timestep.h
         src/Hazel/Platform/OpenGL/OpenGLShader.cpp
         src/Hazel/Platform/OpenGL/OpenGLShader.h
+        vendor/stb_image/stb_image.cpp
+        vendor/stb_image/stb_image.h
+        src/Hazel/Renderer/Texture.cpp
+        src/Hazel/Renderer/Texture.h
+        src/Hazel/Platform/OpenGL/OpenGLTexture.cpp
+        src/Hazel/Platform/OpenGL/OpenGLTexture.h
 )
 
 
-add_library(hazel STATIC ${SRC_LIST} ${SRC_LIST_IMGUI} ${SRC_LIST_IMGUI_BACKENDS})
+add_library(hazel STATIC ${SRC_LIST} ${SRC_LIST_IMGUI} ${SRC_LIST_IMGUI_BACKENDS} ${SRC_LIST_STB_IMAGE})
 add_subdirectory(vendor/GLFW)
 
 target_link_libraries(${PROJECT_NAME}  glfw)
@@ -71,6 +81,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         vendor/imgui
         vendor/imgui/backends
         vendor/glm
+        vendor/stb_image
         src/Hazel/Core
         src/Hazel/Events
         src/Hazel
