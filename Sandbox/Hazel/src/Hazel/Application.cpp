@@ -6,6 +6,7 @@
 #include "ApplicationEvent.h"
 #include "Log.h"
 #include "ImGui/ImGuiLayer.h"
+#include "Renderer/Renderer.h"
 
 namespace Hazel{
     #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -16,6 +17,9 @@ namespace Hazel{
         s_Instance = this;
         m_Window = Scope<Window>(Window::Create());
         m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+        Renderer::Init();
+
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
     }
