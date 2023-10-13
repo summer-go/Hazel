@@ -8,6 +8,7 @@
 #include "Base.h"
 #include "glm/gtc/type_ptr.hpp"
 #include <fstream>
+#include <array>
 
 namespace Hazel{
 
@@ -28,9 +29,17 @@ namespace Hazel{
         std::string source = ReadFile(filePath);
         auto ShaderSources = PreProcess(source);
         Compile(ShaderSources);
+
+        // 以文件名作为shader名字
+        // Extract name from filepath
+        auto lastSlash = filePath.find_last_of("/\\");
+        lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+        auto lastDot = filePath.rfind('.');
+        auto count = lastDot == std::string::npos ? filePath.size() - lastSlash : lastDot - lastSlash;
+        m_Name = filePath.substr(lastSlash, count);
     }
 
-    OpenGLShader::OpenGLShader(const std::string &vertexSrc, const std::string &fragmentSrc) {
+    OpenGLShader::OpenGLShader(const std::string name, const std::string &vertexSrc, const std::string &fragmentSrc) : m_Name(name){
         std::unordered_map<GLenum, std::string> sources;
         sources[GL_VERTEX_SHADER] = vertexSrc;
         sources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -92,8 +101,9 @@ namespace Hazel{
 
     void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string> &shaderSources) {
         GLuint program = glCreateProgram();
-        std::vector<GLenum> glShaderIDs;
-        glShaderIDs.reserve(shaderSources.size());
+        HZ_CORE_ASSERT(shaderSources.size() <= 2, "we only support 2 shaders for now");
+        std::array<GLenum, 2> glShaderIDs;
+        int glShaderIDIndex = 0;
         for (auto& kv : shaderSources) {
             GLenum type = kv.first;
             const std::string& source = kv.second;
@@ -117,7 +127,7 @@ namespace Hazel{
             }
 
             glAttachShader(program, shader);
-            glShaderIDs.push_back(shader);
+            glShaderIDs[glShaderIDIndex++] = shader;
         }
 
         m_RendererID = program;
@@ -184,5 +194,9 @@ namespace Hazel{
     void OpenGLShader::UploadUniformMat4(const std::string &name, const glm::mat4 value) {
         GLint location = glGetUniformLocation(m_RendererID, name.c_str());
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+    }
+
+    const std::string &OpenGLShader::GetName() const {
+        return m_Name;
     }
 }
