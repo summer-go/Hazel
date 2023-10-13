@@ -84,14 +84,16 @@ namespace Hazel{
             size_t nextLinePos = source.find_first_not_of("\r\n", eol);
             // 找到下一个"#type"
             pos = source.find(typeToken, nextLinePos);
-            shaderSource[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos-(nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
+            shaderSource[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos-nextLinePos);
+//            shaderSource[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos-(nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
         }
         return shaderSource;
     }
 
     void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string> &shaderSources) {
         GLuint program = glCreateProgram();
-        std::vector<GLenum> glShaderIDs(shaderSources.size());
+        std::vector<GLenum> glShaderIDs;
+        glShaderIDs.reserve(shaderSources.size());
         for (auto& kv : shaderSources) {
             GLenum type = kv.first;
             const std::string& source = kv.second;
