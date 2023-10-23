@@ -14,15 +14,16 @@ namespace Hazel {
         static void EndScene();
         static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray,
                            const glm::mat4& transform = glm::mat4(1.0f));
+        static void OnWindowResize(uint32_t width, uint32_t height);
 
         inline static RendererAPI::API GetAPI() {
             return RendererAPI::GetAPI();
         }
 
-        struct SceneDatta {
+        struct SceneData {
             glm::mat4 ViewProjectionMatrix;
         };
 
-        static SceneDatta* s_SceneData;
+        static SceneData* s_SceneData;
     };
 }

@@ -37,6 +37,10 @@ namespace Hazel {
         virtual void SetVSync(bool enabled) = 0;
         virtual bool IsVSync() const = 0;
         virtual void* GetNativeWindow(){return nullptr;};
+        virtual void GetPixelSize(uint32_t& width, uint32_t& height) const {
+            width = GetWidth();
+            height = GetHeight();
+        };
 
         static Window* Create(const WindowProps& props = WindowProps());
     };

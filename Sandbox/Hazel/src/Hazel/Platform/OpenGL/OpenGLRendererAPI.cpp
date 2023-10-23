@@ -24,4 +24,9 @@ namespace Hazel{
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
+
+    void OpenGLRendererAPI::SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) {
+        // mac 屏幕上有问题，不知道为啥
+        glViewport(x, y, width, height);
+    }
 }

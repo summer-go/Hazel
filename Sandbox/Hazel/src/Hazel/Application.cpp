@@ -41,6 +41,7 @@ namespace Hazel{
     void Application::OnEvent(Event &e) {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 //        HZ_CORE_TRACE("{0}", e.ToString());
 
         for (auto it = m_LayerStack.end();  it != m_LayerStack.begin();) {
@@ -56,14 +57,29 @@ namespace Hazel{
         return true;
     }
 
+    bool Application::OnWindowResize(Hazel::WindowResizeEvent &e) {
+        if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+            m_Minimized = true;
+            return false;
+        }
+        m_Minimized = false;
+        uint32_t pixelWidth = e.GetWidth(), pixelHeight = e.GetHeight();
+        m_Window->GetPixelSize(pixelWidth, pixelHeight);
+        HZ_INFO("width = {0}, height = {1}, pixelWidth = {2}, pixelHeight = {3}", e.GetWidth(), e.GetHeight(), pixelWidth, pixelHeight);
+        Renderer::OnWindowResize(pixelWidth, pixelHeight);
+        return false;
+    }
+
     void Application::Run() {
-        while(m_Running) {
+        while (m_Running) {
             float time = glfwGetTime();
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
-            for (Layer* layer : m_LayerStack) {
-                layer->OnUpdate(timestep);
+            if (!m_Minimized) {
+                for (Layer *layer: m_LayerStack) {
+                    layer->OnUpdate(timestep);
+                }
             }
             m_ImGuiLayer->Begin();
             for(Layer* layer : m_LayerStack) {
