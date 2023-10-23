@@ -5,7 +5,7 @@
 #ifndef SANBOX_WINDOW_H
 #define SANBOX_WINDOW_H
 
-#include "../Core.h"
+#include "Core.h"
 #include "Event.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

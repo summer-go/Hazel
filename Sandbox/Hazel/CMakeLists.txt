@@ -23,19 +23,19 @@ set(SRC_LIST_IMGUI_BACKENDS
 )
 
 set(SRC_LIST
-        src/Hazel/Application.cpp
-        src/Hazel/Log.cpp
+        src/Hazel/Core/Application.cpp
+        src/Hazel/Core/Log.cpp
         src/Hazel/Platform/Windows/WindowsWindow.cpp
         src/Hazel/glad.c
-        src/Hazel/Layer.h src/Hazel/Layer.cpp
-        src/Hazel/LayerStack.cpp src/Hazel/LayerStack.h
+        src/Hazel/Core/Layer.h src/Hazel/Core/Layer.cpp
+        src/Hazel/Core/LayerStack.cpp src/Hazel/Core/LayerStack.h
         src/Hazel/ImGui/ImGuiLayer.cpp
         src/Hazel/ImGui/ImGuiLayer.h
-        src/Hazel/Input.h
+        src/Hazel/Core/Input.h
         src/Hazel/Platform/Windows/WindowsInput.cpp
         src/Hazel/Platform/Windows/WindowsInput.h
-        src/Hazel/KeyCodes.h
-        src/Hazel/MouseButtonCodes.h
+        src/Hazel/Core/KeyCodes.h
+        src/Hazel/Core/MouseButtonCodes.h
         src/Hazel/Renderer/GraphicsContext.h
         src/Hazel/Platform/OpenGL/OpenGLContext.cpp
         src/Hazel/Platform/OpenGL/OpenGLContext.h
