@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.20)
 set(CMAKE_CXX_STANDARD 17)
 
 project(Sanbox)
-set(SRC_LIST src/SandBoxApp.cpp)
+set(SRC_LIST src/SandBoxApp.cpp
+        src/Renderer2D.cpp
+        src/Renderer2D.h)
 
 add_subdirectory(Hazel)
 

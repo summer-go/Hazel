@@ -4,6 +4,7 @@
 
 //#include "Test.h"
 #include <Hazel.h>
+#include "Hazel/Core/EntryPoint.h"
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
 #include <glm/mat4x4.hpp> // glm::mat4
@@ -13,6 +14,8 @@
 
 #include "imgui.h"
 #include "glm/gtc/type_ptr.hpp"
+
+#include "Renderer2D.h"
 
 
 glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
@@ -28,10 +31,10 @@ glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
 
 class ExampleLayer : public Hazel::Layer {
 public:
-    ExampleLayer() : Layer("Example"), m_CameraController(1280.0f/ 720.0f){
+    ExampleLayer() : Layer("Example"), m_CameraController(1280.0f/ 720.0f, true){
 
         //-----------------三角形----------------------
-        m_VertexArray.reset(Hazel::VertexArray::Create());
+        m_VertexArray = Hazel::VertexArray::Create();
         float vertices[3 * 7] = {
                 -0.5f, -0.5, 0.0, 0.8f, 0.2f, 0.8f, 1.0f,
                 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
@@ -51,7 +54,6 @@ public:
         m_VertexArray->SetIndexBuffer(indexBuffer);
 
         // -----------------矩形--------------------
-        m_SquareVA.reset(Hazel::VertexArray::Create());
         // 注意矩形，顶点按照逆时针排列
         float squareVertices[5*4] = {
                 -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -199,7 +201,8 @@ private:
 class Sandbox : public Hazel::Application {
 public:
     Sandbox(){
-        PushOverlay(new ExampleLayer());
+//        PushOverlay(new ExampleLayer());
+        PushOverlay(new Renderer2D());
     }
 
     ~Sandbox()

@@ -34,6 +34,7 @@ namespace Hazel {
         }
 
         m_Camera.SetPosition(m_CameraPosition);
+        m_Camera.SetRotation(m_CameraRotation);
         m_CameraMoveSpeed = m_ZoomLevel;
     }
 

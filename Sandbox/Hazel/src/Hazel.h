@@ -34,6 +34,6 @@
 
 
 // -----Entry Point-------
-#include "Hazel/Core/EntryPoint.h"
+//#include "Hazel/Core/EntryPoint.h"
 
 #endif //SANBOX_HAZEL_H
