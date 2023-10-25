@@ -3,8 +3,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 project(Sanbox)
 set(SRC_LIST src/SandBoxApp.cpp
-        src/Renderer2D.cpp
-        src/Renderer2D.h)
+        src/Sandbox2D.cpp
+        src/Sandbox2D.h)
 
 add_subdirectory(Hazel)
 

@@ -2,11 +2,11 @@
 
 #include "Hazel.h"
 
-class Renderer2D : public Hazel::Layer {
+class Sandbox2D : public Hazel::Layer {
 public:
-    Renderer2D();
+    Sandbox2D();
 
-    ~Renderer2D() override = default;
+    ~Sandbox2D() override = default;
 
     void OnAttach() override;
 

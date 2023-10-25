@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" modified="2023-10-25T09:31:27.321Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="YMzya6sOrNbO2DpqVK7p" version="22.0.7" type="device">
+  <diagram name="第 1 页" id="LBWet7fq2FZf6ATJFTEg">
+    <mxGraphModel dx="1195" dy="669" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pUkwHbKmZYlNk-GzACij-1" value="" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="130" y="500" width="270" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-2" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; void OnAttach() override;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void OnDetach() override;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void OnUpdate(Hazel::Timestep ts) override;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void OnImGuiRender() override;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; void OnEvent(Hazel::Event &amp;amp;e) override;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;labelBackgroundColor=none;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="130" y="515" width="270" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="pUkwHbKmZYlNk-GzACij-3" target="pUkwHbKmZYlNk-GzACij-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="pUkwHbKmZYlNk-GzACij-3" target="pUkwHbKmZYlNk-GzACij-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="pUkwHbKmZYlNk-GzACij-3" target="pUkwHbKmZYlNk-GzACij-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="pUkwHbKmZYlNk-GzACij-3" target="pUkwHbKmZYlNk-GzACij-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-3" value="Renderer2D" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#b85450;fillColor=#f8cecc;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="470" y="350" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-4" value="" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="440" y="500" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-6" value="&lt;div&gt;// Camera控制器&lt;/div&gt;&lt;div&gt;Hazel::OrthographicCameraController m_CameraController;&lt;/div&gt;&lt;div&gt;// 顶点数组&lt;/div&gt;&lt;div&gt;Hazel::Ref&amp;lt;Hazel::VertexArray&amp;gt; m_SquareVA;&lt;/div&gt;&lt;div&gt;// Shader&lt;/div&gt;&lt;div&gt;Hazel::Ref&amp;lt;Hazel::Shader&amp;gt; m_FlatColorShader;&lt;/div&gt;&lt;div&gt;// Shader中的变量---控制矩形颜色&lt;/div&gt;&lt;div style=&quot;&quot;&gt;glm::vec4 m_SquareColor = {0.2f, 0.3f, 0.8f, 1.0f};&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;labelBackgroundColor=none;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="460" y="520" width="340" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-10" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" target="pUkwHbKmZYlNk-GzACij-11">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="460" y="364.5" as="sourcePoint" />
+            <mxPoint x="620" y="364.5" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;" edge="1" parent="1" source="pUkwHbKmZYlNk-GzACij-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="265" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-11" value="Layer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=#f5f5f5;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="240" y="350" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-15" value="Camera" style="whiteSpace=wrap;html=1;strokeColor=#0F8B8D;fontColor=#143642;fillColor=#FAE5C7;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="660" y="270" width="100" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-18" value="VertexArray" style="whiteSpace=wrap;html=1;strokeColor=#0F8B8D;fontColor=#143642;fillColor=#FAE5C7;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="660" y="320" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-20" value="Shader" style="whiteSpace=wrap;html=1;strokeColor=#0F8B8D;fontColor=#143642;fillColor=#FAE5C7;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="660" y="370" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-22" value="控制变量 Color" style="whiteSpace=wrap;html=1;strokeColor=#666666;fontColor=#333333;fillColor=#f5f5f5;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="660" y="420" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-24" value="" style="html=1;shadow=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.58;dx=14.27;direction=south;notch=0;strokeColor=#A8201A;" vertex="1" parent="1">
+          <mxGeometry x="675" y="470" width="20" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pUkwHbKmZYlNk-GzACij-25" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#0F8B8D;fontColor=#143642;fillColor=none;sketch=1;curveFitting=1;jiggle=2;" vertex="1" parent="1">
+          <mxGeometry x="570" y="250" width="230" height="210" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
