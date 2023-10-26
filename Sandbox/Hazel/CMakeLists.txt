@@ -70,6 +70,8 @@ set(SRC_LIST
         src/Hazel/Platform/OpenGL/OpenGLTexture.h
         src/Hazel/OrthographicCameraController.cpp
         src/Hazel/OrthographicCameraController.h
+        src/Hazel/Renderer/Renderer2D.cpp
+        src/Hazel/Renderer/Renderer2D.h
 )
 
 
