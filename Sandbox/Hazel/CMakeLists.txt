@@ -72,6 +72,7 @@ set(SRC_LIST
         src/Hazel/OrthographicCameraController.h
         src/Hazel/Renderer/Renderer2D.cpp
         src/Hazel/Renderer/Renderer2D.h
+        src/Hazel/Debug/Instrumentor.h
 )
 
 

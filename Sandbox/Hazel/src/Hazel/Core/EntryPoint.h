@@ -12,12 +12,26 @@ int main(int argc, char** argv) {
     Hazel::Log::Init();
 //    Hazel::Log::GetCoreLogger()->warn("Initialized Log!");
 //    Hazel::Log::GetClientLogger()->info("Hello!");
-    HZ_CORE_WARN("Initialed Log!!!!");
-    int a = 5;
-    HZ_INFO("Hello! Var={0}", a);
 
+    HZ_INFO("main  startup----");
+    HZ_PROFILE_BEGIN_SESSION("Startup", "HazelProfile-Startup.json");
     auto app = Hazel::CreateApplication();
+    HZ_PROFILE_END_SESSION();
+
+    HZ_INFO("main  before Runtime----");
+
+    HZ_PROFILE_BEGIN_SESSION("Runtime", "HazelProfile-Runtime.json");
     app->Run();
+    HZ_PROFILE_END_SESSION();
+
+    HZ_INFO("main  after Runtime----");
+
+
+    HZ_PROFILE_BEGIN_SESSION("Startup", "HazelProfile-Shutdown.json");
     delete app;
+    HZ_PROFILE_END_SESSION();
+
+    HZ_INFO("main  exit ----");
+
 }
 #endif //SANBOX_ENTRYPOINT_H
