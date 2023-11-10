@@ -47,8 +47,6 @@ namespace Hazel {
 
         void BeginSession(const std::string& name, const std::string& filepath = "results.json")
         {
-            HZ_CORE_INFO("BeginSession----file = {0}", filepath);
-
             m_OutputStream.open(filepath);
             WriteHeader();
             m_CurrentSession = new InstrumentationSession{name};
@@ -57,8 +55,6 @@ namespace Hazel {
 
         void EndSession()
         {
-            HZ_CORE_INFO("EndSession----");
-
             WriteFooter();
             m_OutputStream.close();
             delete m_CurrentSession;

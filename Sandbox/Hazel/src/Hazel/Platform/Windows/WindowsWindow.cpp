@@ -9,6 +9,7 @@
 #include "WindowsWindow.h"
 #include <iostream>
 #include "Platform/OpenGL/OpenGLContext.h"
+#include "Debug/Instrumentor.h"
 
 //#include "Assert.h"
 namespace Hazel {
@@ -22,14 +23,20 @@ namespace Hazel {
     }
 
     WindowsWindow::WindowsWindow(const WindowProps &props) {
+        HZ_PROFILE_FUNCTION();
+
         Init(props);
     }
 
     WindowsWindow::~WindowsWindow() noexcept {
+        HZ_PROFILE_FUNCTION();
+
         Shutdown();
     }
 
     void WindowsWindow::Init(const WindowProps &props) {
+        HZ_PROFILE_FUNCTION();
+
         m_Data.Title = props.Title;
         m_Data.Width = props.Width;
         m_Data.Height = props.Height;
@@ -38,13 +45,10 @@ namespace Hazel {
 
         if (!s_GLFWInitialized) {
             int success = glfwInit();
-            if (!success) {
-                return;
-            }
+            HZ_CORE_ASSERT(success, "Could not initialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
             s_GLFWInitialized = true;
         }
-        glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -52,8 +56,10 @@ namespace Hazel {
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-        m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-
+        {
+            HZ_PROFILE_SCOPE("glfwCreateWindow");
+            m_Window = glfwCreateWindow((int) props.Width, (int) props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+        }
         m_Context = new OpenGLContext(m_Window);
         m_Context->Init();
 
@@ -137,16 +143,19 @@ namespace Hazel {
     }
 
     void WindowsWindow::Shutdown() {
+        HZ_PROFILE_FUNCTION();
         glfwDestroyWindow(m_Window);
     }
 
     void WindowsWindow::OnUpdate() {
+        HZ_PROFILE_FUNCTION();
         glfwPollEvents();
         m_Context->SwapBuffers();
 //        glfwSwapBuffers(m_Window);
     }
 
     void WindowsWindow::SetVSync(bool enabled) {
+        HZ_PROFILE_FUNCTION();
         if (enabled) {
             glfwSwapInterval(1);
         } else {

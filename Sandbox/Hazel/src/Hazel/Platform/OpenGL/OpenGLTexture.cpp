@@ -6,10 +6,15 @@
 #include "stb_image.h"
 #include "Base.h"
 #include "glad/glad.h"
+#include "Debug/Instrumentor.h"
+
 namespace Hazel {
     OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
         : m_width(width), m_height(height)
     {
+        HZ_PROFILE_FUNCTION();
+
+
         m_InternalFormat = GL_RGBA8;
         m_DataFormat = GL_RGBA;
         glGenTextures(1, &m_RendererID);
@@ -25,6 +30,8 @@ namespace Hazel {
     }
 
     OpenGLTexture2D::OpenGLTexture2D(const std::string &path) : m_Path(path){
+        HZ_PROFILE_FUNCTION();
+
         int width, height, channels;
         stbi_set_flip_vertically_on_load(1);
         stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
@@ -70,10 +77,14 @@ namespace Hazel {
     }
 
     OpenGLTexture2D::~OpenGLTexture2D() {
+        HZ_PROFILE_FUNCTION();
+
         glDeleteTextures(1, &m_RendererID);
     }
 
     void OpenGLTexture2D::Bind(uint32_t slot) const {
+        HZ_PROFILE_FUNCTION();
+
         glActiveTexture(GL_TEXTURE0 + slot);
         glBindTexture(GL_TEXTURE_2D, m_RendererID);
 
@@ -82,6 +93,8 @@ namespace Hazel {
     }
 
     void OpenGLTexture2D::SetData(void *data, uint32_t size) {
+        HZ_PROFILE_FUNCTION();
+
         uint32_t bpp = m_DataFormat == GL_RGBA ? 4 : 3;
         HZ_CORE_ASSERT(size == m_width * m_height * bpp, "Data must be entire");
 

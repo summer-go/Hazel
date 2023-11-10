@@ -12,16 +12,16 @@ namespace Hazel{
     public:
         void GetPixelSize(uint32_t& width, uint32_t& height) const override;
 
-        WindowsWindow(const WindowProps& props);
+        explicit WindowsWindow(const WindowProps& props);
 
-        virtual ~WindowsWindow();
+        ~WindowsWindow() override;
 
         void OnUpdate() override;
 
         inline unsigned int GetWidth() const override {return m_Data.Width;}
         inline unsigned  int GetHeight() const override {return m_Data.Height;}
 
-        void* GetNativeWindow() {
+        void* GetNativeWindow() override {
             return m_Window;
         }
 
