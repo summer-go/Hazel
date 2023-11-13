@@ -30,6 +30,7 @@ namespace Hazel {
         void SetFloat3(const std::string &name, const glm::vec3 &value) override;
         void SetFloat4(const std::string &name, const glm::vec4 &value) override;
         void SetInt(const std::string &name, const int value) override;
+        void SetFloat(const std::string &name, const float value) override;
 
     private:
         std::string ReadFile(const std::string& filePath);

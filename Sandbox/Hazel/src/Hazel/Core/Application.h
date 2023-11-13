@@ -17,12 +17,13 @@
 #include "Renderer/OrthographicCamera.h"
 #include "Core.h"
 
+int main(int argc, char** argv);
+
 namespace Hazel{
 class Application {
 public:
     Application();
     virtual ~Application();
-    void Run();
     void OnEvent(Event& e);
     void PushLayer(Layer* layer);
     void PushOverlay(Layer* layer);
@@ -35,6 +36,9 @@ public:
     }
 
 private:
+    // 优化，将Run()函数放到private下，不对外公开暴露
+    // main通过friend的形式调用Run();
+    void Run();
     bool OnWindowClose(WindowCloseEvent& e);
     bool OnWindowResize(WindowResizeEvent& e);
 private:
@@ -47,6 +51,7 @@ private:
 
 private:
     static Application* s_Instance;
+    friend int ::main(int argc, char** argv);
 };
 
     Application* CreateApplication();
