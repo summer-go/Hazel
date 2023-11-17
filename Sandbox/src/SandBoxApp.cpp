@@ -16,6 +16,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "Sandbox2D.h"
+#include "GameLayer.h"
 
 
 glm::mat4 camera(float Translate, glm::vec2 const& Rotate)
@@ -202,7 +203,8 @@ class Sandbox : public Hazel::Application {
 public:
     Sandbox(){
 //        PushOverlay(new ExampleLayer());
-        PushOverlay(new Sandbox2D());
+//        PushOverlay(new Sandbox2D());
+        PushLayer(new GameLayer());
     }
 
     ~Sandbox()

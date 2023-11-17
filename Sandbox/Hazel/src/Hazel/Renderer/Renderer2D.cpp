@@ -49,7 +49,8 @@ namespace Hazel {
         uint32_t whiteTextureData = 0xffffffff;
         s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 
-        s_Data->TextureShader = Hazel::Shader::Create("../assets/shaders/Texture.glsl");
+//        s_Data->TextureShader = Hazel::Shader::Create("../assets/shaders/Texture.glsl");
+        s_Data->TextureShader = Hazel::Shader::Create("../assets/shaders/GameTexture.glsl");
         s_Data->TextureShader->Bind();
         s_Data->TextureShader->SetInt("u_Texture", 0);
     }
@@ -107,12 +108,12 @@ namespace Hazel {
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
     }
 
-    void Renderer2D::DrawRotatedQuad(const glm::vec2 &position, const glm::vec2 &size, float rotation,
+    void Renderer2D::DrawQuad(const glm::vec2 &position, const glm::vec2 &size, float rotation,
                                      const glm::vec4 &color) {
-        DrawRotatedQuad({position.x, position.y, 0.0f}, size, rotation, color);
+        DrawQuad({position.x, position.y, 0.0f}, size, rotation, color);
     }
 
-    void Renderer2D::DrawRotatedQuad(const glm::vec3 &position, const glm::vec2 &size, float rotation,
+    void Renderer2D::DrawQuad(const glm::vec3 &position, const glm::vec2 &size, float rotation,
                                      const glm::vec4 &color) {
         HZ_PROFILE_FUNCTION();
 
@@ -127,12 +128,12 @@ namespace Hazel {
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
     }
 
-    void Renderer2D::DrawRotatedQuad(const glm::vec2 &position, const glm::vec2 &size, float rotation,
+    void Renderer2D::DrawQuad(const glm::vec2 &position, const glm::vec2 &size, float rotation,
                                      const Ref<Texture2D> &texture, float tilingFactor, const glm::vec4 &tintColor) {
-        DrawRotatedQuad({position.x, position.y, 0.0f}, size, rotation, texture, tilingFactor, tintColor);
+        DrawQuad({position.x, position.y, 0.0f}, size, rotation, texture, tilingFactor, tintColor);
     }
 
-    void Renderer2D::DrawRotatedQuad(const glm::vec3 &position, const glm::vec2 &size, float rotation,
+    void Renderer2D::DrawQuad(const glm::vec3 &position, const glm::vec2 &size, float rotation,
                                      const Ref<Texture2D> &texture, float tilingFactor, const glm::vec4 &tintColor) {
         HZ_PROFILE_FUNCTION();
 
@@ -146,6 +147,7 @@ namespace Hazel {
 
         s_Data->TextureShader->SetMat4("u_Transform", transform);
         s_Data->QuadVertexArray->Bind();
+        RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
     }
 
 }
