@@ -8,7 +8,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 using namespace Hazel;
-
 static glm::vec4 HSVtoRGB(const glm::vec3& hsv) {
     int H = (int)(hsv.x * 360.0f);
     double S = hsv.y;
@@ -92,10 +91,13 @@ void Level::OnUpdate(Hazel::Timestep ts) {
 
     m_PillarHSV.x += 0.1f * ts;
     if (m_PillarHSV.x > 1.0f) {
-        m_PillarHSV.x - 0.0f;
+        m_PillarHSV.x = 0.0f;
     }
 
-    if (m_Player.GetPosition().x > m_PillarTarget) {
+    // 搞清楚这个pillar Target的逻辑
+     if (m_Player.GetPosition().x > m_PillarTarget) {
+        HZ_INFO("Level::OnUpdate m_PillarIndex = {0}; m_PillarTarget = {1}; m_PillarTarget + 20.0f = {2}",m_PillarIndex, m_PillarTarget, m_PillarTarget + 20.0f);
+
         CreatePillar(m_PillarIndex, m_PillarTarget + 20.0f);
         m_PillarIndex = ++m_PillarIndex % m_Pillars.size();
         m_PillarTarget += 10.0f;
@@ -129,6 +131,8 @@ void Level::OnImGuiRender() {
 
 
 void Level::CreatePillar(int index, float offset) {
+    HZ_INFO("Level::CreatePillar index = {0}; offset = {1}",index, offset);
+
     Pillar& pillar = m_Pillars[index];
     pillar.TopPosition.x = offset;
     pillar.BottomPosition.x = offset;
@@ -138,6 +142,7 @@ void Level::CreatePillar(int index, float offset) {
     float center = Random::Float() * 35.0f - 17.5f;
     float gap = 2.0f + Random::Float() * 5.0f;
 
+    // todo：解释y的计算原理
     pillar.TopPosition.y = 10.0f - ((10.0f - center) * 0.2f) + gap * 0.5f;
     pillar.BottomPosition.y = -10.0f - ((-10.0f - center) * 0.2f) - gap * 0.5f;
 }

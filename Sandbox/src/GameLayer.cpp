@@ -24,7 +24,6 @@ void GameLayer::OnAttach() {
 }
 
 void GameLayer::OnDetach() {
-    Layer::OnDetach();
 }
 
 void GameLayer::OnUpdate(Hazel::Timestep ts) {
@@ -100,8 +99,8 @@ void GameLayer::OnImGuiRender() {
             ImGui::GetForegroundDrawList()->AddText(m_Font, 48.0f, pos, 0xffffffff, scoreStr.c_str());
             break;
         }
-
     }
+    m_Level.OnImGuiRender();
 }
 
 void GameLayer::OnEvent(Hazel::Event &e) {

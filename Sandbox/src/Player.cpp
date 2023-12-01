@@ -68,9 +68,10 @@ void Player::OnRender() {
     Renderer2D::DrawQuad({m_Position.x, m_Position.y, 0.5f}, {1.0f, 1.3f}, glm::radians(GetRotation()), m_ShipTexture);
 }
 
+// 暂时有bug，事件有冲突，先注释掉
 void Player::OnImGuiRender() {
-    ImGui::DragFloat("Engine Power", &m_EnginePower, 0.1f);
-    ImGui::DragFloat("Gravity", &m_Gravity, 0.1f);
+//    ImGui::DragFloat("Engine Power", &m_EnginePower, 0.1f);
+//    ImGui::DragFloat("Gravity", &m_Gravity, 0.1f);
 }
 
 void Player::Reset() {

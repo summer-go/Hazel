@@ -4,7 +4,6 @@ class Random {
 public:
     static void Init()
     {
-        // todo: 补充std::random_device的使用
         s_RandomEngine.seed(std::random_device()());
     }
 
