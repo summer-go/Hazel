@@ -70,7 +70,7 @@ public:
         m_SquareVA->AddVertexBuffer(squareVB);
         uint32_t squareIndices[6] = {0,1,2,2,3,0};
         Hazel::Ref<Hazel::IndexBuffer> squareIB;
-        squareIB.reset(Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices)/sizeof(uint32_t)));
+//        squareIB.reset(Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices)/sizeof(uint32_t)));
         m_SquareVA->SetIndexBuffer(squareIB);
 
 
@@ -203,8 +203,8 @@ class Sandbox : public Hazel::Application {
 public:
     Sandbox(){
 //        PushOverlay(new ExampleLayer());
-//        PushOverlay(new Sandbox2D());
-        PushLayer(new GameLayer());
+        PushOverlay(new Sandbox2D());
+//        PushLayer(new GameLayer());
     }
 
     ~Sandbox()

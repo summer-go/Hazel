@@ -124,7 +124,7 @@ namespace Hazel {
 }
 #define HZ_CONCATENATE_IMPL(x, y) x##y
 #define HZ_CONCATENATE(x, y) HZ_CONCATENATE_IMPL(x, y)
-#define HZ_PROFILE 1
+#define HZ_PROFILE 0
 #if HZ_PROFILE
     #define HZ_PROFILE_BEGIN_SESSION(name, filepath) ::Hazel::Instrumentor::Get().BeginSession(name, filepath)
     #define HZ_PROFILE_END_SESSION() ::Hazel::Instrumentor::Get().EndSession()
