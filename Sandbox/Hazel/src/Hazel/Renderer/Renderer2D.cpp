@@ -42,8 +42,9 @@ namespace Hazel {
 
         s_Data = new Renderer2DData();
         s_Data->QuadVertexArray = Hazel::VertexArray::Create();
-
+        // 创建顶点缓冲，按照预设的最大值MaxVertices来申请空间
         s_Data->QuadVertexBuffer = VertexBuffer::Create(s_Data->MaxVertices * sizeof(QuadVertex));
+        // 设置顶点数据的布局属性，按照position、color、texCoord的顺序排列
         s_Data->QuadVertexBuffer->SetLayout(
                 {
                         {ShaderDataType::Float3, "a_Position"},
@@ -51,13 +52,14 @@ namespace Hazel {
                         {ShaderDataType::Float2, "a_TexCoord"}
                 }
                 );
-
+        // 顶点缓冲绑定到顶点数组中，s_Data->QuadVertexBuffer在GPU内存中，现在只有内存占用无数据
         s_Data->QuadVertexArray->AddVertexBuffer(s_Data->QuadVertexBuffer);
+        // 创建CPU空间的顶点数据，也是按照最大预设置来创建
         s_Data->QuadVertexBufferBase = new QuadVertex[s_Data->MaxVertices];
-
+        // 创建索引数组
         uint32_t* quadIndices = new uint32_t[s_Data->MaxIndices];
-
         uint32_t  offset = 0;
+        // 1个矩形对应4个顶点，对应6个索引值，所以offset间隔为4,indice间隔为6
         for (uint32_t i = 0; i < s_Data->MaxIndices; i+= 6) {
             quadIndices[i+0] = offset + 0;
             quadIndices[i+1] = offset + 1;
@@ -71,10 +73,13 @@ namespace Hazel {
         }
 
         Ref<IndexBuffer> quadIB = IndexBuffer::Create(quadIndices, s_Data->MaxIndices);
+        // 绑定索引缓冲到顶点数组
         s_Data->QuadVertexArray->SetIndexBuffer(quadIB);
         delete[] quadIndices;
 
+        // 创建1*1的纯色纹理
         s_Data->WhiteTexture = Texture2D::Create(1, 1);
+        // 纹理颜色为白色
         uint32_t whiteTextureData = 0xffffffff;
         s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 
@@ -117,6 +122,7 @@ namespace Hazel {
         DrawQuad({position.x, position.y, 0.0f}, size, color);
     }
 
+    // 每个矩形对应4个顶点，即每绘制一个矩形，要添加4个顶点到s_Data中，用s_Data->QuadVertexBufferPtr标记end的地址
     void Renderer2D::DrawQuad(const glm::vec3 &position, const glm::vec2 &size, const glm::vec4 &color) {
         HZ_PROFILE_FUNCTION();
 
