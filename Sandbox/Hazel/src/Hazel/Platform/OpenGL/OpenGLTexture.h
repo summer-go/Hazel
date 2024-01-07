@@ -19,6 +19,11 @@ namespace Hazel {
 
         void SetData(void *data, uint32_t size) override;
 
+
+        bool operator==(const Texture &other) const override{
+            return m_RendererID == ((OpenGLTexture2D&)other).m_RendererID;
+        }
+
     private:
         std::string m_Path;
         uint32_t m_width, m_height;

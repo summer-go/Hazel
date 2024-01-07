@@ -18,12 +18,16 @@ namespace Hazel {
         glm::vec3 Position;
         glm::vec4 Color;
         glm::vec2 TexCoord;
+        float TexIndex;
+        float TilingFactor;
     };
 
     struct Renderer2DData{
         const uint32_t MaxQuads = 10000;
         const uint32_t MaxVertices = MaxQuads * 4;
         const uint32_t MaxIndices = MaxQuads * 6;
+        // 纹理最大值取决于GPU，至少有8个，我的mac笔记本上是16个
+        static const uint32_t MaxTexturesSlots = 16; // TODO:RenderCaps
 
         Ref<VertexArray> QuadVertexArray;
         Ref<VertexBuffer> QuadVertexBuffer;
@@ -33,6 +37,9 @@ namespace Hazel {
         uint32_t QuadIndexCount = 0;
         QuadVertex* QuadVertexBufferBase = nullptr;
         QuadVertex* QuadVertexBufferPtr = nullptr;
+
+        std::array<Ref<Texture2D>, MaxTexturesSlots> TextureSlots;
+        uint32_t TextureSlotIndex = 1; // 0 = white texture
     };
 
     static Renderer2DData* s_Data;
@@ -49,7 +56,9 @@ namespace Hazel {
                 {
                         {ShaderDataType::Float3, "a_Position"},
                         {ShaderDataType::Float4, "a_Color"},
-                        {ShaderDataType::Float2, "a_TexCoord"}
+                        {ShaderDataType::Float2, "a_TexCoord"},
+                        {ShaderDataType::Float, "a_TexIndex"},
+                        {ShaderDataType::Float, "a_TilingFactor"},
                 }
                 );
         // 顶点缓冲绑定到顶点数组中，s_Data->QuadVertexBuffer在GPU内存中，现在只有内存占用无数据
@@ -83,15 +92,28 @@ namespace Hazel {
         uint32_t whiteTextureData = 0xffffffff;
         s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 
+        int32_t samplers[Hazel::Renderer2DData::MaxTexturesSlots];
+        for (uint32_t i = 0; i < Hazel::Renderer2DData::MaxTexturesSlots; i++) {
+            samplers[i] = i;
+        }
+
         s_Data->TextureShader = Shader::Create("../assets/shaders/Texture.glsl");
         s_Data->TextureShader->Bind();
-        s_Data->TextureShader->SetInt("u_Texture", 0);
+        s_Data->TextureShader->SetIntArray("u_Textures", samplers, Hazel::Renderer2DData::MaxTexturesSlots);
+
+        // Set all texture slots to 0
+        // 安全起见，将数组中的每个值都初始化成一个默认的纹理，即单像素纹理
+        for (int i = 0; i < s_Data->MaxTexturesSlots; i++) {
+            s_Data->TextureSlots[i] = s_Data->WhiteTexture;
+        }
     }
 
     void Renderer2D::Shutdown() {
         HZ_PROFILE_FUNCTION();
 
-        delete s_Data;
+        s_Data->QuadIndexCount = 0;
+        s_Data->QuadVertexBufferPtr = s_Data->QuadVertexBufferBase;
+        s_Data->TextureSlotIndex = 1;
     }
 
     void Renderer2D::BeginScene(const OrthographicCamera &camera) {
@@ -102,6 +124,8 @@ namespace Hazel {
 
         s_Data->QuadIndexCount = 0;
         s_Data->QuadVertexBufferPtr = s_Data->QuadVertexBufferBase;
+
+        s_Data->TextureSlotIndex = 1;
     }
 
     void Renderer2D::EndScene() {
@@ -115,6 +139,20 @@ namespace Hazel {
 
     void Renderer2D::Flush()
     {
+        // Bind Textures
+
+        for (uint32_t i = 0; i < s_Data->TextureSlotIndex; i++) {
+            s_Data->TextureSlots[i]->Bind(i);
+        }
+
+        // 这里绑定TextureSlotIndex个纹理，但是前面声明了16个纹理，并且在shader中也声明了16个纹理，运行时，会按索引查找所有的纹理，mac上会抛出如下警告日志
+        // 如果你想消除这个警告，将所有的索引都绑定到gpu的纹理上，即将上面这段代码替换成下面这段。
+
+        //UNSUPPORTED (log once): POSSIBLE ISSUE: unit 2 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+        for (uint32_t i = 0; i < s_Data->MaxTexturesSlots; i++) {
+            s_Data->TextureSlots[i]->Bind(i);
+        }
+
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray, s_Data->QuadIndexCount);
     }
 
@@ -126,24 +164,35 @@ namespace Hazel {
     void Renderer2D::DrawQuad(const glm::vec3 &position, const glm::vec2 &size, const glm::vec4 &color) {
         HZ_PROFILE_FUNCTION();
 
+        const float texIndex = 0.0f; // white Texture
+        const float tilingFactor = 1.0f;
+
         s_Data->QuadVertexBufferPtr->Position = position;
         s_Data->QuadVertexBufferPtr->Color = color;
         s_Data->QuadVertexBufferPtr->TexCoord = {0.0f, 0.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
         s_Data->QuadVertexBufferPtr++;
 
         s_Data->QuadVertexBufferPtr->Position = {position.x + size.x, position.y, 0.0f};
         s_Data->QuadVertexBufferPtr->Color = color;
         s_Data->QuadVertexBufferPtr->TexCoord = {1.0f, 0.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
         s_Data->QuadVertexBufferPtr++;
 
         s_Data->QuadVertexBufferPtr->Position = {position.x+size.x, position.y+size.y, 0.0f};
         s_Data->QuadVertexBufferPtr->Color = color;
         s_Data->QuadVertexBufferPtr->TexCoord = {1.0f, 1.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
         s_Data->QuadVertexBufferPtr++;
 
         s_Data->QuadVertexBufferPtr->Position = {position.x, position.y + size.y, 0.0f};
         s_Data->QuadVertexBufferPtr->Color = color;
         s_Data->QuadVertexBufferPtr->TexCoord = {0.0f, 1.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
         s_Data->QuadVertexBufferPtr++;
 
         s_Data->QuadIndexCount += 6;
@@ -156,6 +205,53 @@ namespace Hazel {
     void Renderer2D::DrawQuad(const glm::vec3 &position, const glm::vec2 &size, const Ref<Texture2D> &texture, float tilingFactor, const glm::vec4& tintColor) {
         HZ_PROFILE_FUNCTION();
 
+        constexpr glm::vec4 color = {1.0f, 1.0f, 1.0f, 1.0f};
+
+        float texIndex = 0.0f;
+        for (uint32_t i = 1; i < s_Data->TextureSlotIndex; ++i) {
+            if (*s_Data->TextureSlots[i].get() == *texture.get()) {
+                texIndex = (float)i;
+                break;
+            }
+        }
+
+        if (0.0f == texIndex) {
+            texIndex = (float)s_Data->TextureSlotIndex;
+            s_Data->TextureSlots[s_Data->TextureSlotIndex] = texture;
+            s_Data->TextureSlotIndex++;
+        }
+
+        s_Data->QuadVertexBufferPtr->Position = position;
+        s_Data->QuadVertexBufferPtr->Color = color;
+        s_Data->QuadVertexBufferPtr->TexCoord = {0.0f, 0.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
+        s_Data->QuadVertexBufferPtr++;
+
+        s_Data->QuadVertexBufferPtr->Position = {position.x + size.x, position.y, 0.0f};
+        s_Data->QuadVertexBufferPtr->Color = color;
+        s_Data->QuadVertexBufferPtr->TexCoord = {1.0f, 0.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
+        s_Data->QuadVertexBufferPtr++;
+
+        s_Data->QuadVertexBufferPtr->Position = {position.x+size.x, position.y+size.y, 0.0f};
+        s_Data->QuadVertexBufferPtr->Color = color;
+        s_Data->QuadVertexBufferPtr->TexCoord = {1.0f, 1.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
+        s_Data->QuadVertexBufferPtr++;
+
+        s_Data->QuadVertexBufferPtr->Position = {position.x, position.y + size.y, 0.0f};
+        s_Data->QuadVertexBufferPtr->Color = color;
+        s_Data->QuadVertexBufferPtr->TexCoord = {0.0f, 1.0f};
+        s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
+        s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
+        s_Data->QuadVertexBufferPtr++;
+
+        s_Data->QuadIndexCount += 6;
+
+#if OLD_PATH
         s_Data->TextureShader->Bind();
         s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
         s_Data->TextureShader->SetFloat("u_TilingFactor", tilingFactor);
@@ -166,6 +262,7 @@ namespace Hazel {
 
         s_Data->QuadVertexArray->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
+#endif
     }
 
     void Renderer2D::DrawQuad(const glm::vec2 &position, const glm::vec2 &size, float rotation,

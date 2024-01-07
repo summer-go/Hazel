@@ -1,0 +1,99 @@
+<mxfile host="app.diagrams.net" modified="2024-01-07T18:48:01.520Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="B1GqAV0mGqXDrgR7-PfP" version="22.1.17" type="device">
+  <diagram name="第 1 页" id="SLrktfSzrF-O68CP1Qlt">
+    <mxGraphModel dx="684" dy="410" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-72" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 12px;&quot;&gt;纹理 0&lt;/font&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#E07A5F;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=#393C56;fillColor=#F2CC8F;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="300" width="73" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-1" value="GL_TEXTURE0" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="414" y="299" width="100" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" parent="1" source="6YSiHGlYJEzHySJ8SQxE-2" target="6YSiHGlYJEzHySJ8SQxE-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-2" value="矩形_0" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=12;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="260" y="290" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-4" value="GPU 纹理内存地址" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="404" y="259" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-5" value="矩形" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="260" y="259" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-17" value="glUniform1i(textures[0], 0)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=7;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="310" y="292" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;exitX=-0.002;exitY=0.371;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="6YSiHGlYJEzHySJ8SQxE-72" target="6YSiHGlYJEzHySJ8SQxE-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="315.0000000000001" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-19" value="纹理" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="569.5" y="260" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-27" value="GL_TEXTURE1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="414" y="364" width="100" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" source="6YSiHGlYJEzHySJ8SQxE-29" target="6YSiHGlYJEzHySJ8SQxE-27" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-29" value="矩形_1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=12;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="260" y="355" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-32" value="glUniform1i(textures[1], 1)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=7;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="310" y="357" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="6YSiHGlYJEzHySJ8SQxE-27" parent="1" source="6YSiHGlYJEzHySJ8SQxE-74">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="380.0000000000001" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-57" value="GL_TEXTUREx" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="414" y="434" width="100" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" source="6YSiHGlYJEzHySJ8SQxE-59" target="6YSiHGlYJEzHySJ8SQxE-57" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-59" value="矩形_x" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=12;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="260" y="425" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-60" value="glUniform1i(textures[x], x)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=7;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="310" y="427" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="6YSiHGlYJEzHySJ8SQxE-57" parent="1" source="6YSiHGlYJEzHySJ8SQxE-75">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="450.0000000000001" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-64" value="GL_TEXTURE15" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="414" y="504" width="100" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;" edge="1" source="6YSiHGlYJEzHySJ8SQxE-66" target="6YSiHGlYJEzHySJ8SQxE-64" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-66" value="矩形_15" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=12;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fillColor=#F2CC8F;strokeColor=#E07A5F;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="260" y="495" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-67" value="glUniform1i(textures[15], 15)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=7;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;fontColor=#393C56;" vertex="1" parent="1">
+          <mxGeometry x="305" y="497" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;sketch=1;curveFitting=1;jiggle=2;labelBackgroundColor=none;strokeColor=#E07A5F;fontColor=default;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" target="6YSiHGlYJEzHySJ8SQxE-64" parent="1" source="6YSiHGlYJEzHySJ8SQxE-76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="520.0000000000001" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-74" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 12px;&quot;&gt;纹理 1&lt;/font&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#E07A5F;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=#393C56;fillColor=#F2CC8F;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="360" width="73" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-75" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 12px;&quot;&gt;纹理 x&lt;/font&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#E07A5F;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=#393C56;fillColor=#F2CC8F;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="430" width="73" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6YSiHGlYJEzHySJ8SQxE-76" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 12px;&quot;&gt;纹理 15&lt;/font&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;strokeColor=#E07A5F;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;fontColor=#393C56;fillColor=#F2CC8F;labelBackgroundColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="500" width="73" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
