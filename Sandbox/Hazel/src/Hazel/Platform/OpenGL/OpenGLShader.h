@@ -15,6 +15,7 @@ namespace Hazel {
         void Unbind() const override;
 
         void UploadUniformInt(const std::string& name, int value);
+        void UploadUniformIntArray(const std::string& name, int* values, uint32_t);
 
         void UploadUniformFloat(const std::string& name, float value);
         void UploadUniformFloat2(const std::string& name, const glm::vec2& value);
@@ -31,6 +32,8 @@ namespace Hazel {
         void SetFloat4(const std::string &name, const glm::vec4 &value) override;
         void SetInt(const std::string &name, const int value) override;
         void SetFloat(const std::string &name, const float value) override;
+
+        void SetIntArray(const std::string &name, int *values, uint32_t count) override;
 
     private:
         std::string ReadFile(const std::string& filePath);
