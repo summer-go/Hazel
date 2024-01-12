@@ -12,7 +12,7 @@ struct ParticleProps {
 
 class ParticleSystem {
 public:
-    ParticleSystem();
+    ParticleSystem(uint32_t maxParticles = 1000);
 
     void Emit(const ParticleProps& particleProps);
     void OnUpdate(Hazel::Timestep ts);

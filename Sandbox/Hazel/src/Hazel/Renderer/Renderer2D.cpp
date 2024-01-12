@@ -23,7 +23,7 @@ namespace Hazel {
     };
 
     struct Renderer2DData{
-        static const uint32_t MaxQuads = 10000;
+        static const uint32_t MaxQuads = 1000;
         static const uint32_t MaxVertices = MaxQuads * 4;
         static const uint32_t MaxIndices = MaxQuads * 6;
         // 纹理最大值取决于GPU，至少有8个，我的mac笔记本上是16个
@@ -151,9 +151,9 @@ namespace Hazel {
     {
         // Bind Textures
 
-        for (uint32_t i = 0; i < s_Data->TextureSlotIndex; i++) {
-            s_Data->TextureSlots[i]->Bind(i);
-        }
+//        for (uint32_t i = 0; i < s_Data->TextureSlotIndex; i++) {
+//            s_Data->TextureSlots[i]->Bind(i);
+//        }
 
         // 这里绑定TextureSlotIndex个纹理，但是前面声明了16个纹理，并且在shader中也声明了16个纹理，运行时，会按索引查找所有的纹理，mac上会抛出如下警告日志
         // 如果你想消除这个警告，将所有的索引都绑定到gpu的纹理上，即将上面这段代码替换成下面这段。

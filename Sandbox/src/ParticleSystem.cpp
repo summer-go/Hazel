@@ -9,9 +9,9 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/compatibility.hpp>
 
-ParticleSystem::ParticleSystem()
+ParticleSystem::ParticleSystem(uint32_t maxParticles) : m_PoolIndex(maxParticles-1)
 {
-    m_ParticlePool.resize(1000);
+    m_ParticlePool.resize(maxParticles);
 }
 
 void ParticleSystem::Emit(const ParticleProps &particleProps) {
@@ -68,6 +68,7 @@ void ParticleSystem::OnRender() {
         color.a = color.a * life;
 
         float size = glm::lerp(particle.SizeEnd, particle.SizeBegin, life);
-        Hazel::Renderer2D::DrawQuad(particle.Position, {size, size}, particle.Rotation, color);
+        glm::vec3 position = {particle.Position, 0.2f};
+        Hazel::Renderer2D::DrawQuad(position, {size, size}, particle.Rotation, color);
     }
 }

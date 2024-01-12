@@ -6,6 +6,15 @@
 #include "Renderer/OrthographicCamera.h"
 
 namespace Hazel {
+    struct OrthographicCameraBounds
+    {
+        float Left, Right;
+        float Bottom, Top;
+
+        float GetWidth() { return Right - Left; }
+        float GetHeight() { return Top - Bottom; }
+    };
+
     class OrthographicCameraController {
     public:
         OrthographicCameraController(float aspecRato, bool rotation = false);
@@ -14,6 +23,7 @@ namespace Hazel {
 
         OrthographicCamera& GetCamera(){return m_Camera;}
         const OrthographicCamera& GetCamera() const {return m_Camera;}
+        const OrthographicCameraBounds& GetBounds() const { return m_Bounds; }
 
     private:
         bool OnMouseScrolled(MouseScrolledEvent& e);
@@ -28,6 +38,7 @@ namespace Hazel {
         float m_CameraMoveSpeed = 5.f;
         float m_CameraRotationSpeed = 180.0f;
         OrthographicCamera m_Camera;
+        OrthographicCameraBounds m_Bounds;
     };
 
 }
